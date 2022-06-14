@@ -8,13 +8,13 @@ package jubilaeumsrechner;
  * @version 1.0
  *
  */ 
-public class Jubilaeum implements Comparable<Jubilaeum> {
+public class Jubilee implements Comparable<Jubilee> {
 	
 	private long dorZeit;
 	private String greg;
 	private String angabe;
 	
-	public Jubilaeum(long dorZeit, String angabe) {
+	public Jubilee(long dorZeit, String angabe) {
 		this.dorZeit = dorZeit;
 		this.angabe = angabe;
 	}
@@ -40,7 +40,7 @@ public class Jubilaeum implements Comparable<Jubilaeum> {
 	}
 
 	@Override
-	public int compareTo(Jubilaeum o) {
+	public int compareTo(Jubilee o) {
 		return ((Long)dorZeit).compareTo((Long)o.dorZeit);
 	}
 }

@@ -32,7 +32,7 @@ public class Ergebnisse extends JPanel {
 	 * Diese Methode erstellt aus den ihr vorgegebenen Werten die Jubilaeumstabelle.
 	 */
 	public void generiere() {
-		Vector<Object> eintraege = new Vector<Object>();
+		Vector eintraege = new Vector<Object>();
 		for(Jubilaeum jub:jubilaeumsliste) {
 			Vector<Object> zeile = new Vector<Object>();
 			zeile.add(String.format("%,d",jub.getDorZeit()));
@@ -41,12 +41,13 @@ public class Ergebnisse extends JPanel {
 			eintraege.add(zeile);
 		}
 
-		Vector<String> titel = new Vector<String>();
+		Vector<Object> titel = new Vector<Object>();
 		titel.add("DORzeit");
 		titel.add("Greg.-Zeit");
 		titel.add("Ereignis");
 		tabelle1 = new JTable(eintraege, titel);
-		
+		//tabelle1 = new JTable(eintraege);
+		  
 		tabelle1.getColumn("DORzeit").setPreferredWidth(20);
 	    tabelle1.getColumn("Greg.-Zeit").setPreferredWidth(30);
 	    tabelle1.getColumn("Ereignis").setPreferredWidth(50);

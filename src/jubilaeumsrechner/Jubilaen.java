@@ -99,7 +99,7 @@ public class Jubilaen {
     	}
     	jubilaeumslisteTemp.remove(jubilaeumslisteTemp.size()-1);
     	jubilaeumsliste.addAll(jubilaeumslisteTemp);
-    }
+    } 
     
     /**
      * Diese Methode sortiert alle Jubilaen nach Datum, rechnet sie in Dabendorfer Uhrzeiten um und traegt sie in die Jubilaeumstabelle ein.

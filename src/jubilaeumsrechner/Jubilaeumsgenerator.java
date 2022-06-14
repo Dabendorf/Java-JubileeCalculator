@@ -106,7 +106,7 @@ public class Jubilaeumsgenerator implements Iterable<Integer> {
             }
             return result;
         }
-    };
+    }; 
  
     /**
      * Dieser Iterator fasst alle anderen Ereignisse zusammen und steuert den Ablauf.
