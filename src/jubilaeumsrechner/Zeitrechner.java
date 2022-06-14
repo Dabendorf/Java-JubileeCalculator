@@ -26,6 +26,7 @@ import javax.swing.text.NumberFormatter;
  * @version 1.0
  *
  */
+
 public class Zeitrechner extends JPanel {
 
 	private NumberFormat format1 = NumberFormat.getInstance();
