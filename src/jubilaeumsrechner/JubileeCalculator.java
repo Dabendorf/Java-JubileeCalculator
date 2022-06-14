@@ -18,27 +18,27 @@ import java.util.Date;
 public class JubileeCalculator {
 
     public JubileeCalculator() {
-        ArrayList<Jubilee> jubileelist = calculateJubilees();
+        String jubileeString = "2004-08-07 09:00:00";
+        String untilString = "2026-01-01 09:00:00";
+        ArrayList<Jubilee> jubileelist = calculateJubilees(jubileeString, untilString);
         output(jubileelist);
     }
 
     /**
      * Calculates all jubilees
      */
-    private ArrayList<Jubilee> calculateJubilees() {
+    private ArrayList<Jubilee> calculateJubilees(String oldDateStr, String untilDateStr) {
         ArrayList<Jubilee> jubileelist = new ArrayList<Jubilee>();
-        DateFormat dateFormat = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         Calendar today = Calendar.getInstance();
         long todaySeconds = today.getTimeInMillis()/1000;
 
         
         try {
-            String oldDateStr = "07-08-2004 09:00:00";
             Date oldDate = dateFormat.parse(oldDateStr);
             long oldDateUnix = (long) oldDate.getTime()/1000;
 
-            String untilDateStr = "22-01-2025 09:00:00";
             Date untilDate = dateFormat.parse(untilDateStr);
             long untilDateUnix = (long) untilDate.getTime()/1000;
 
@@ -48,7 +48,7 @@ public class JubileeCalculator {
             jubileelist.addAll(new JubileeGenerator().generateRegularJubilees(oldDateUnix, todaySeconds, untilDateUnix, "Days", 60*60*24));
             jubileelist.addAll(new JubileeGenerator().generateRegularJubilees(oldDateUnix, todaySeconds, untilDateUnix, "Weeks", 60*60*24*7));
             jubileelist.addAll(new JubileeGenerator().generateMonths(oldDateUnix, todaySeconds, untilDateUnix, "Months"));
-            jubileelist.addAll(new JubileeGenerator().generateYears(oldDateUnix, todaySeconds, untilDateUnix));
+            jubileelist.addAll(new JubileeGenerator().generateYears(oldDateUnix, todaySeconds, untilDateUnix, "Years"));
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -60,21 +60,12 @@ public class JubileeCalculator {
      * Sorts all jubilees and outputs them
      */
     private void output(ArrayList<Jubilee> jubileelist) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     	Collections.sort(jubileelist);
 
-    	/*for(Jubilee j:jubileelist) {
-    		DabendorferZeit dz = new DabendorferZeit();
-    		dz.getGregKalender().setTimeInMillis(j.getDorZeit()*1000);
-    		dz.gregZuDORdirekt();
-    		j.setDorZeit(dz.getDorZeit());
-    		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
-    		j.setGreg(dateFormat.format(dz.getGregKalender().getTime()));
-    	}
-    	ergebnisse.ergebnisseEintragen(jubileelist);*/
-
         for(Jubilee j: jubileelist) {
-            System.out.println(j.getGreg()+"; "+j.getType()+"; "+j.getUnix());
+            j.setGreg(dateFormat.format(new Date(j.getUnix()*1000)));
+            System.out.println(j.getGreg()+": "+j.getType());
         }
     }
 

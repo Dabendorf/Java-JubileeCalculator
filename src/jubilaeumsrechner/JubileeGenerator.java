@@ -21,7 +21,7 @@ public class JubileeGenerator implements Iterable<Integer> {
 		ArrayList<Jubilee> listofjubilees = new ArrayList<Jubilee>();
 		for(int value : this) {
         	if(unixjubilee+value*multiplicator < unixnow) continue;
-        	listofjubilees.add(new Jubilee(unixjubilee+value*multiplicator, String.format("%,d",value)+" "+identifier, identifier));
+        	listofjubilees.add(new Jubilee(unixjubilee+value*multiplicator, String.format("%,d",value)+" "+identifier, null));
             if(unixjubilee+value*multiplicator > unixuntil) break;
         }
 		listofjubilees.remove(listofjubilees.size()-1);
@@ -44,7 +44,7 @@ public class JubileeGenerator implements Iterable<Integer> {
 			temp.setTimeInMillis(unixjubilee*1000);
 			temp.add(Calendar.MONTH,value);
 			if(temp.getTimeInMillis()/1000 < unixnow) continue;
-			listofjubilees.add(new Jubilee(temp.getTimeInMillis()/1000, String.format("%,d",value)+" "+identifier, identifier));
+			listofjubilees.add(new Jubilee(temp.getTimeInMillis()/1000, String.format("%,d",value)+" "+identifier, null));
 			if(temp.getTimeInMillis()/1000 > unixuntil) break;
         }
 		listofjubilees.remove(listofjubilees.size()-1);
@@ -56,8 +56,9 @@ public class JubileeGenerator implements Iterable<Integer> {
      * @param unixjubilee Unixtime of the jubilee
      * @param unixnow Unixtime of now
      * @param unixuntil Unixtime until which we calculate jubilees
+     * @param identifier The type of jubilee as String
      */
-    public ArrayList<Jubilee> generateYears(long unixjubilee, long unixnow, long unixuntil) {
+    public ArrayList<Jubilee> generateYears(long unixjubilee, long unixnow, long unixuntil, String identifier) {
     	ArrayList<Jubilee> jubileelistTemp = new ArrayList<Jubilee>();
     	Calendar temp = Calendar.getInstance();
     	temp.setTimeInMillis(unixjubilee*1000);
@@ -66,7 +67,7 @@ public class JubileeGenerator implements Iterable<Integer> {
     		temp.add(Calendar.YEAR,1);
     		i++;
     		if(temp.getTimeInMillis()/1000>unixnow) {
-    			jubileelistTemp.add(new Jubilee(temp.getTimeInMillis()/1000, String.format("%,d",i)+" "+"Years", "Years"));
+    			jubileelistTemp.add(new Jubilee(temp.getTimeInMillis()/1000, String.format("%,d",i)+" "+identifier, null));
     		}
     	}
     	jubileelistTemp.remove(jubileelistTemp.size()-1);
