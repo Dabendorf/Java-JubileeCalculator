@@ -5,30 +5,23 @@ package jubilaeumsrechner;
  * It also includes comparable to later sort everything
  * 
  * @author Lukas Schramm
- * @version 1.0
+ * @version 1.1
  *
  */ 
 public class Jubilee implements Comparable<Jubilee> {
 	
-	private long dorZeit;
 	private String greg;
-	private String angabe;
+	private String type;
+    private long unix;
 	
-	public Jubilee(long dorZeit, String angabe) {
-		this.dorZeit = dorZeit;
-		this.angabe = angabe;
+	public Jubilee(long unix, String type, String greg) {
+		this.type = type;
+        this.unix = unix;
+        this.greg = greg;
 	}
 	
-	public long getDorZeit() {
-		return dorZeit;
-	}
-	
-	public String getAngabe() {
-		return angabe;
-	}
-
-	public void setDorZeit(long dorZeit) {
-		this.dorZeit = dorZeit;
+	public String getType() {
+		return type;
 	}
 
 	public String getGreg() {
@@ -39,8 +32,12 @@ public class Jubilee implements Comparable<Jubilee> {
 		this.greg = greg;
 	}
 
+    public long getUnix() {
+        return unix;
+    }
+
 	@Override
 	public int compareTo(Jubilee o) {
-		return ((Long)dorZeit).compareTo((Long)o.dorZeit);
+		return ((Long)unix).compareTo((Long)o.unix);
 	}
 }

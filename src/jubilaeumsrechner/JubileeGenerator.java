@@ -21,7 +21,7 @@ public class JubileeGenerator implements Iterable<Integer> {
 		ArrayList<Jubilee> listofjubilees = new ArrayList<Jubilee>();
 		for(int value : this) {
         	if(unixjubilee+value*multiplicator < unixnow) continue;
-        	listofjubilees.add(new Jubilee(unixjubilee+value*multiplicator, String.format("%,d",value)+" "+identifier));
+        	listofjubilees.add(new Jubilee(unixjubilee+value*multiplicator, String.format("%,d",value)+" "+identifier, identifier));
             if(unixjubilee+value*multiplicator > unixuntil) break;
         }
 		listofjubilees.remove(listofjubilees.size()-1);
@@ -44,7 +44,7 @@ public class JubileeGenerator implements Iterable<Integer> {
 			temp.setTimeInMillis(unixjubilee*1000);
 			temp.add(Calendar.MONTH,value);
 			if(temp.getTimeInMillis()/1000 < unixnow) continue;
-			listofjubilees.add(new Jubilee(temp.getTimeInMillis()/1000, String.format("%,d",value)+" "+identifier));
+			listofjubilees.add(new Jubilee(temp.getTimeInMillis()/1000, String.format("%,d",value)+" "+identifier, identifier));
 			if(temp.getTimeInMillis()/1000 > unixuntil) break;
         }
 		listofjubilees.remove(listofjubilees.size()-1);
@@ -66,7 +66,7 @@ public class JubileeGenerator implements Iterable<Integer> {
     		temp.add(Calendar.YEAR,1);
     		i++;
     		if(temp.getTimeInMillis()/1000>unixnow) {
-    			jubileelistTemp.add(new Jubilee(temp.getTimeInMillis()/1000, String.format("%,d",i)+" "+"Years"));
+    			jubileelistTemp.add(new Jubilee(temp.getTimeInMillis()/1000, String.format("%,d",i)+" "+"Years", "Years"));
     		}
     	}
     	jubileelistTemp.remove(jubileelistTemp.size()-1);

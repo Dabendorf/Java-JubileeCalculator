@@ -8,6 +8,13 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 
+/**
+ * Main class of the jubilee calculator calculating all jubilees for a date from now until a certain date.
+ * 
+ * @author Lukas Schramm
+ * @version 1.1
+ *
+ */ 
 public class JubileeCalculator {
 
     public JubileeCalculator() {
@@ -53,8 +60,10 @@ public class JubileeCalculator {
      * Sorts all jubilees and outputs them
      */
     private void output(ArrayList<Jubilee> jubileelist) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
     	Collections.sort(jubileelist);
-    	for(Jubilaeum j:jubileelist) {
+
+    	/*for(Jubilee j:jubileelist) {
     		DabendorferZeit dz = new DabendorferZeit();
     		dz.getGregKalender().setTimeInMillis(j.getDorZeit()*1000);
     		dz.gregZuDORdirekt();
@@ -62,7 +71,11 @@ public class JubileeCalculator {
     		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
     		j.setGreg(dateFormat.format(dz.getGregKalender().getTime()));
     	}
-    	ergebnisse.ergebnisseEintragen(jubileelist);
+    	ergebnisse.ergebnisseEintragen(jubileelist);*/
+
+        for(Jubilee j: jubileelist) {
+            System.out.println(j.getGreg()+"; "+j.getType()+"; "+j.getUnix());
+        }
     }
 
     public static void main(String[] args) {
