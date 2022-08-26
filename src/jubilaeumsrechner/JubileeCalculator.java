@@ -17,9 +17,11 @@ import java.util.Date;
  */ 
 public class JubileeCalculator {
 
-    public JubileeCalculator() {
-        String jubileeString = "2004-08-07 09:00:00";
-        String untilString = "2026-01-01 09:00:00";
+    public JubileeCalculator(String jubileeString, String untilString) {
+        //String jubileeString = "2004-08-07 09:00:00";
+        //String jubileeString = "2022-06-22 20:28:00";
+        //String jubileeString = "2022-06-04 09:00:00";
+        //String untilString = "2026-01-01 09:00:00";
         ArrayList<Jubilee> jubileelist = calculateJubilees(jubileeString, untilString);
         output(jubileelist);
     }
@@ -70,7 +72,9 @@ public class JubileeCalculator {
     }
 
     public static void main(String[] args) {
-		new JubileeCalculator();
+        System.out.print("Jubilee: "+args[0]+"\n");
+        System.out.print("Caclulate until: "+args[1]+"\n\n");
+        new JubileeCalculator(args[0], args[1]);
 	}
     
 }

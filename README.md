@@ -31,6 +31,8 @@ Output: <br>
 ```
 
 # Use
-You just need to compile the Java code (the main file is ``JubileeCalculator``) and input the date into the constructor in line 21.
+You just need to compile the Java code (the main file is ``JubileeCalculator``)
 
-The programme runs from the command line
+The programme runs from the command line, you pass two arguments to the programme, the date itself and a date until which it should display jubilees.
+
+``java jubilaeumsrechner.JubileeCalculator "2022-06-04 09:00:00" "2026-01-01 09:00:00"``
